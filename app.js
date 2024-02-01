@@ -1,32 +1,34 @@
-import express from 'express';
-import authRoutes from './routes/authRoutes.js';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import globalErrorHandler from './controllers/errorController.js';
-import AppError from './utils/appError.js';
+import express from "express";
+import authRoutes from "./routes/authRoutes.js";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import globalErrorHandler from "./controllers/errorController.js";
+import AppError from "./utils/appError.js";
+import calenderRoutes from "./routes/calenderRoutes.js";
 
 const app = express();
 const port = 5000;
 const allowedOrigins = [
-  'https://edtechdev.vercel.app',
-  'http://localhost:3000'
+  "https://edtechdev.vercel.app",
+  "http://localhost:3000",
 ];
 
 const corsOptions = {
   origin: allowedOrigins,
-  credentials: true
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
-app.use(express.json({ limit: '10kb' }));
+app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
-  res.send('welcome to TraverseBE');
+app.get("/", (req, res) => {
+  res.send("welcome to TraverseBE");
 });
 
-app.use('/api/v1/auth', authRoutes);
-app.use('*', (req, res, next) => {
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/calendar", calenderRoutes);
+app.use("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
 app.use(globalErrorHandler);
