@@ -1,17 +1,36 @@
-import mongoose from 'mongoose';
-import validator from 'validator';
+import mongoose from "mongoose";
 
-const calenderSchema = new mongoose.Schema({
-    description:{
-        type: String,
-        required: [true, 'Please provide a project name.']
+const calendarSchema = mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
     },
-    createdAt:{
-        type: Date,
-        default: Date.now
+    event: {
+      type: String,
+      required: [true, "Event field is required"],
     },
-    time:{
-        type: Number,
-        default: 1
+    time: {
+      type: String,
+      required: [true, "Time is required"],
     },
-})
+    day: {
+      type: String,
+      required: [true, "Day is required"],
+    },
+    month: {
+      type: String,
+      required: [true, "Month is required"],
+    },
+    year: {
+      type: Number,
+      required: [true, "Year is required"],
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+export default mongoose.model("Calender", calenderSchema);
