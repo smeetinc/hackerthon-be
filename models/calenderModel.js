@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const calendarSchema = mongoose.Schema(
+const calenderSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,

@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
-import Calender from "../models/calenderModel";
-import catchAsyn from "../utils/catchAsync";
+import Calender from "../models/calenderModel.js";
+import catchAsyn from "../utils/catchAsync.js";
 
 //@desc Get calender data
 //@route GET api/v1/calender
